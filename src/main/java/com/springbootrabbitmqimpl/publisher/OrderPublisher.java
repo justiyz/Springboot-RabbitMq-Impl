@@ -1,11 +1,11 @@
 package com.springbootrabbitmqimpl.publisher;
 
-import com.springbootrabbitmqimpl.config.MessagingConfig;
 import com.springbootrabbitmqimpl.dto.Order;
 import com.springbootrabbitmqimpl.dto.OrderStatus;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import static com.springbootrabbitmqimpl.Constants.*;
 
 import java.util.UUID;
 
@@ -20,7 +20,7 @@ public class OrderPublisher {
     public String placeOrder(@RequestBody Order order, @PathVariable String restaurantName){
         order.setOrderId(UUID.randomUUID().toString());
         OrderStatus orderStatus = new OrderStatus(order, "PROCESS", "Order placed successfully in %s"+ restaurantName);
-        template.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.ROUTING_KEY, orderStatus);
+        template.convertAndSend(EXCHANGE, ROUTING_KEY, orderStatus);
         return "SUCCESS !";
     }
 }

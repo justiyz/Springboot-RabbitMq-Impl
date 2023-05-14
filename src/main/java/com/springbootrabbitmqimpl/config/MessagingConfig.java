@@ -9,12 +9,12 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import static com.springbootrabbitmqimpl.Constants.*;
+
 @Configuration
 public class MessagingConfig {
 
-    public static final String QUEUE = "ernest_queue";
-    public static final String EXCHANGE = "ernest_exchange";
-    public static final String ROUTING_KEY = "ernest_routingKey";
+
 
     @Bean
     public Queue queue (){
