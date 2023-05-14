@@ -1,4 +1,4 @@
-package com.springbootrabbitmqimpl.publisher;
+package com.springbootrabbitmqimpl.producer;
 
 import com.springbootrabbitmqimpl.dto.Order;
 import com.springbootrabbitmqimpl.dto.OrderStatus;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/order")
-public class OrderPublisher {
+public class OrderProducer {
 
     @Autowired
     private RabbitTemplate template;
