@@ -14,8 +14,6 @@ import static com.springbootrabbitmqimpl.Constants.*;
 @Configuration
 public class MessagingConfig {
 
-
-
     @Bean
     public Queue queue (){
         return new Queue(QUEUE);
