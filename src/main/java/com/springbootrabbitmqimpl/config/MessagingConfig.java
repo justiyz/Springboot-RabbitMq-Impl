@@ -1,6 +1,5 @@
 package com.springbootrabbitmqimpl.config;
 
-
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -15,23 +14,26 @@ import static com.springbootrabbitmqimpl.Constants.*;
 public class MessagingConfig {
 
     @Bean
-    public Queue queue (){
+    public Queue queue() {
         return new Queue(QUEUE);
     }
 
     @Bean
-    public TopicExchange exchange (){
+    public TopicExchange exchange() {
         return new TopicExchange(EXCHANGE);
     }
+
     @Bean
-    public Binding binding (Queue queue, TopicExchange exchange){
+    public Binding binding(Queue queue, TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
     }
+
     @Bean
-    public MessageConverter converter(){
+    public MessageConverter converter() {
         return new Jackson2JsonMessageConverter();
     }
-    public AmqpTemplate template(ConnectionFactory connectionFactory){
+
+    public AmqpTemplate template(ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(converter());
         return rabbitTemplate;
